@@ -1,11 +1,22 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, data, useLoaderData } from '@remix-run/react';
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  data,
+  useRouteLoaderData,
+} from '@remix-run/react';
 import type { LinksFunction, LoaderFunctionArgs } from '@remix-run/cloudflare';
-
 import './tailwind.css';
 import { useChangeLanguage } from 'remix-i18next/react';
 import { useTranslation } from 'react-i18next';
 import i18next from '~/i18n/i18next.server';
-import { sessionStorage as i18nSessionStorage } from '~/i18n/i18next.server';
+import { themeSessionResolver, i18nSessionStorage } from '~/sessions.server';
+import clsx from 'clsx';
+import { PreventFlashOnWrongTheme, Theme, ThemeProvider, useTheme } from 'remix-themes';
+import { supportedLngs } from '~/i18n/resources';
 
 // export const links: LinksFunction = () => [
 //   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -21,25 +32,9 @@ import { sessionStorage as i18nSessionStorage } from '~/i18n/i18next.server';
 // ];
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  let locale = await i18next.getLocale(request);
-  let session = await i18nSessionStorage.getSession(request.headers.get('Cookie'));
-
-  // Early return if session already has the correct language
-  const currentSessionLng = session.get('lng');
-  if (currentSessionLng === locale) {
-    return data({ locale });
-  }
-
-  // Only set and commit session if language has changed
-  session.set('lng', locale);
-  return data(
-    { locale },
-    {
-      headers: {
-        'Set-Cookie': await i18nSessionStorage.commitSession(session),
-      },
-    },
-  );
+  const { getTheme } = await themeSessionResolver(request);
+  const locale = await i18next.getLocale(request);
+  return data({ theme: getTheme(), locale });
 }
 
 // export let handle = {
@@ -50,10 +45,15 @@ export async function loader({ request }: LoaderFunctionArgs) {
 //   i18n: "common",
 // };
 
+// Wrap your app with ThemeProvider.
+// `specifiedTheme` is the stored theme in the session storage.
+// `themeAction` is the action name that's used to change the theme in the session storage.
+
 export function Layout({ children }: { children: React.ReactNode }) {
   // Get the locale from the loader
-  const data = useLoaderData<typeof loader>();
-  const locale = data?.locale || 'en';
+  const data = useRouteLoaderData<typeof loader>('root');
+  const theme = data?.theme || Theme.DARK;
+  const locale = data?.locale || supportedLngs[0];
 
   let { i18n } = useTranslation();
 
@@ -62,13 +62,34 @@ export function Layout({ children }: { children: React.ReactNode }) {
   // language, this locale will change and i18next will load the correct
   // translation files
   useChangeLanguage(locale);
-
   return (
-    <html lang={locale} dir={i18n.dir()}>
+    <ThemeProvider specifiedTheme={theme} themeAction="/action/set-theme">
+      <InnerLayout locale={locale} dir={i18n.dir()} ssrTheme={Boolean(theme)}>
+        {children}
+      </InnerLayout>
+    </ThemeProvider>
+  );
+}
+
+function InnerLayout({
+  locale,
+  dir,
+  ssrTheme,
+  children,
+}: {
+  locale: string;
+  dir: string;
+  ssrTheme: boolean;
+  children: React.ReactNode;
+}) {
+  const [theme] = useTheme();
+  return (
+    <html lang={locale} dir={dir} className={clsx(theme)}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        <PreventFlashOnWrongTheme ssrTheme={ssrTheme} />
         <Links />
       </head>
       <body>

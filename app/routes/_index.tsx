@@ -3,6 +3,7 @@ import { data } from '@remix-run/cloudflare';
 import { useTranslation } from 'react-i18next';
 import i18next from '~/i18n/i18next.server';
 import { LangSwitcher } from '~/components/lang-switcher';
+import { ModeToggle } from '~/components/mode-toggle';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const t = await i18next.getFixedT(request);
@@ -105,14 +106,11 @@ export default function Index() {
           <h1 className="leading text-2xl font-bold text-gray-800 dark:text-gray-100">
             {t('index.title')} to <span className="sr-only">Remix</span>
           </h1>
-          <div className="h-[144px] w-[434px]">
-            <img src="/logo-light.png" alt="Remix" className="block w-full dark:hidden" />
-            <img src="/logo-dark.png" alt="Remix" className="hidden w-full dark:block" />
-          </div>
         </header>
-        <LangSwitcher />
         <nav className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-200 p-6 dark:border-gray-700">
           <p className="leading-6 text-gray-700 dark:text-gray-200">{t('index.whats-next')}</p>
+          <ModeToggle />
+          <LangSwitcher />
           <ul>
             {resources.map(({ href, text, icon }) => (
               <li key={href}>

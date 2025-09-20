@@ -1,24 +1,13 @@
 // import { resolve } from "node:path";
 import { RemixI18Next } from 'remix-i18next/server';
 import i18n from '~/i18n/i18n'; // your i18n configuration file
-import { createCookieSessionStorage } from '@remix-run/cloudflare';
-
-export const sessionStorage = createCookieSessionStorage({
-  cookie: {
-    name: 'lng',
-    path: '/',
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
-    httpOnly: true,
-    secrets: ['n3wsecr3t', 'olds3cret'],
-  },
-});
+import { i18nSessionStorage } from '~/sessions.server';
 
 let i18next = new RemixI18Next({
   detection: {
     supportedLanguages: i18n.supportedLngs,
     fallbackLanguage: i18n.fallbackLng,
-    sessionStorage,
+    sessionStorage: i18nSessionStorage,
   },
   // This is the configuration for i18next used
   // when translating messages server-side only
