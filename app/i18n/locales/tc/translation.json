@@ -1,11 +1,11 @@
 {
-    "index": {
-        "title": "歡迎使用 Remix",
-        "description": "歡迎使用 Remix!",
-        "whats-next": "下一步是什麼?",
-        "quick-start": "快速入門 (5 分鐘)",
-        "tutorial": "教程 (30 分鐘)",
-        "remix-docs": "Remix 文檔",
-        "remix-docs-description": "Remix 文檔"
-    }
+  "index": {
+    "title": "歡迎使用 Remix",
+    "description": "歡迎使用 Remix!",
+    "whats-next": "下一步是什麼?",
+    "quick-start": "快速入門 (5 分鐘)",
+    "tutorial": "教程 (30 分鐘)",
+    "remix-docs": "Remix 文檔",
+    "remix-docs-description": "Remix 文檔"
+  }
 }

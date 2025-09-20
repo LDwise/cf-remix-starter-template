@@ -1,19 +1,11 @@
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  data,
-  useLoaderData,
-} from "@remix-run/react";
-import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/cloudflare";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, data, useLoaderData } from '@remix-run/react';
+import type { LinksFunction, LoaderFunctionArgs } from '@remix-run/cloudflare';
 
-import "./tailwind.css";
-import { useChangeLanguage } from "remix-i18next/react";
-import { useTranslation } from "react-i18next";
-import i18next from "~/i18n/i18next.server";
-import { sessionStorage as i18nSessionStorage } from "~/i18n/i18next.server";
+import './tailwind.css';
+import { useChangeLanguage } from 'remix-i18next/react';
+import { useTranslation } from 'react-i18next';
+import i18next from '~/i18n/i18next.server';
+import { sessionStorage as i18nSessionStorage } from '~/i18n/i18next.server';
 
 // export const links: LinksFunction = () => [
 //   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -30,25 +22,23 @@ import { sessionStorage as i18nSessionStorage } from "~/i18n/i18next.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   let locale = await i18next.getLocale(request);
-  let session = await i18nSessionStorage.getSession(
-    request.headers.get("Cookie")
-  );
+  let session = await i18nSessionStorage.getSession(request.headers.get('Cookie'));
 
   // Early return if session already has the correct language
-  const currentSessionLng = session.get("lng");
+  const currentSessionLng = session.get('lng');
   if (currentSessionLng === locale) {
     return data({ locale });
   }
 
   // Only set and commit session if language has changed
-  session.set("lng", locale);
+  session.set('lng', locale);
   return data(
     { locale },
     {
       headers: {
-        "Set-Cookie": await i18nSessionStorage.commitSession(session),
+        'Set-Cookie': await i18nSessionStorage.commitSession(session),
       },
-    }
+    },
   );
 }
 
@@ -63,7 +53,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export function Layout({ children }: { children: React.ReactNode }) {
   // Get the locale from the loader
   const data = useLoaderData<typeof loader>();
-  const locale = data?.locale || "en";
+  const locale = data?.locale || 'en';
 
   let { i18n } = useTranslation();
 

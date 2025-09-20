@@ -1,8 +1,8 @@
-import { Languages } from "lucide-react";
-import { Button } from "~/components/ui/button";
-import { supportedLngs } from "~/i18n/resources";
-import { useTranslation } from "react-i18next";
-import { useFetcher } from "@remix-run/react";
+import { Languages } from 'lucide-react';
+import { Button } from '~/components/ui/button';
+import { supportedLngs } from '~/i18n/resources';
+import { useTranslation } from 'react-i18next';
+import { useFetcher } from '@remix-run/react';
 
 export function LangSwitcher() {
   const { i18n } = useTranslation();

@@ -11,11 +11,7 @@
   ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "types": [
-        "./worker-configuration.d.ts",
-        "@remix-run/cloudflare",
-        "vite/client"
-    ],
+    "types": ["./worker-configuration.d.ts", "@remix-run/cloudflare", "vite/client"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",

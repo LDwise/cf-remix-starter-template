@@ -1,15 +1,16 @@
 // import { resolve } from "node:path";
-import { RemixI18Next } from "remix-i18next/server";
-import i18n from "~/i18n/i18n"; // your i18n configuration file
-import { createCookieSessionStorage } from "@remix-run/cloudflare";
+import { RemixI18Next } from 'remix-i18next/server';
+import i18n from '~/i18n/i18n'; // your i18n configuration file
+import { createCookieSessionStorage } from '@remix-run/cloudflare';
 
 export const sessionStorage = createCookieSessionStorage({
   cookie: {
-    name: "lng",
-    path: "/",
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    name: 'lng',
+    path: '/',
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
+    secrets: ['n3wsecr3t', 'olds3cret'],
   },
 });
 

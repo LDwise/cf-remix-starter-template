@@ -1,4 +1,4 @@
-import { supportedLngs, fallbackLng, resources } from "./resources";
+import { supportedLngs, fallbackLng, resources } from './resources';
 
 export default {
   // This is the list of languages your application supports

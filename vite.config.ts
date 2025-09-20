@@ -1,12 +1,9 @@
-import { defineConfig } from "vite";
-import {
-  vitePlugin as remix,
-  cloudflareDevProxyVitePlugin,
-} from "@remix-run/dev";
-import tsconfigPaths from "vite-tsconfig-paths";
-import { getLoadContext } from "./load-context";
+import { defineConfig } from 'vite';
+import { vitePlugin as remix, cloudflareDevProxyVitePlugin } from '@remix-run/dev';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { getLoadContext } from './load-context';
 
-declare module "@remix-run/cloudflare" {
+declare module '@remix-run/cloudflare' {
   interface Future {
     v3_singleFetch: true;
   }
@@ -30,11 +27,11 @@ export default defineConfig({
   ],
   ssr: {
     resolve: {
-      conditions: ["workerd", "worker", "browser"],
+      conditions: ['workerd', 'worker', 'browser'],
     },
   },
   resolve: {
-    mainFields: ["browser", "module", "main"],
+    mainFields: ['browser', 'module', 'main'],
   },
   build: {
     minify: true,

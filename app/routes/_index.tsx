@@ -1,27 +1,24 @@
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
-import { data } from "@remix-run/cloudflare";
-import { useTranslation } from "react-i18next";
-import i18next from "~/i18n/i18next.server";
-import { LangSwitcher } from "~/components/lang-switcher";
+import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
+import { data } from '@remix-run/cloudflare';
+import { useTranslation } from 'react-i18next';
+import i18next from '~/i18n/i18next.server';
+import { LangSwitcher } from '~/components/lang-switcher';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const t = await i18next.getFixedT(request);
-  return data({ title: t("title"), description: t("description") });
+  return data({ title: t('title'), description: t('description') });
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [
-    { title: data?.title },
-    { name: "description", content: data?.description },
-  ];
+  return [{ title: data?.title }, { name: 'description', content: data?.description }];
 };
 
 export default function Index() {
   const { t } = useTranslation();
   const resources = [
     {
-      href: "https://remix.run/start/quickstart",
-      text: t("index.quick-start"),
+      href: 'https://remix.run/start/quickstart',
+      text: t('index.quick-start'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -41,8 +38,8 @@ export default function Index() {
       ),
     },
     {
-      href: "https://remix.run/start/tutorial",
-      text: t("index.tutorial"),
+      href: 'https://remix.run/start/tutorial',
+      text: t('index.tutorial'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -62,8 +59,8 @@ export default function Index() {
       ),
     },
     {
-      href: "https://remix.run/docs",
-      text: t("index.remix-docs"),
+      href: 'https://remix.run/docs',
+      text: t('index.remix-docs'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -82,8 +79,8 @@ export default function Index() {
       ),
     },
     {
-      href: "https://rmx.as/discord",
-      text: t("index.join-discord"),
+      href: 'https://rmx.as/discord',
+      text: t('index.join-discord'),
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -106,26 +103,16 @@ export default function Index() {
       <div className="flex flex-col items-center gap-16">
         <header className="flex flex-col items-center gap-9">
           <h1 className="leading text-2xl font-bold text-gray-800 dark:text-gray-100">
-            {t("index.title")} to <span className="sr-only">Remix</span>
+            {t('index.title')} to <span className="sr-only">Remix</span>
           </h1>
           <div className="h-[144px] w-[434px]">
-            <img
-              src="/logo-light.png"
-              alt="Remix"
-              className="block w-full dark:hidden"
-            />
-            <img
-              src="/logo-dark.png"
-              alt="Remix"
-              className="hidden w-full dark:block"
-            />
+            <img src="/logo-light.png" alt="Remix" className="block w-full dark:hidden" />
+            <img src="/logo-dark.png" alt="Remix" className="hidden w-full dark:block" />
           </div>
         </header>
         <LangSwitcher />
         <nav className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-200 p-6 dark:border-gray-700">
-          <p className="leading-6 text-gray-700 dark:text-gray-200">
-            {t("index.whats-next")}
-          </p>
+          <p className="leading-6 text-gray-700 dark:text-gray-200">{t('index.whats-next')}</p>
           <ul>
             {resources.map(({ href, text, icon }) => (
               <li key={href}>
