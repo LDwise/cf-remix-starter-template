@@ -8,6 +8,10 @@ import type { AppLoadContext, EntryContext } from "@remix-run/cloudflare";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToReadableStream } from "react-dom/server";
+import { createInstance } from "i18next";
+import i18next from "~/i18n/i18next.server";
+import { I18nextProvider, initReactI18next } from "react-i18next";
+import i18n from "~/i18n/i18n"; // your i18n configuration file
 
 const ABORT_DELAY = 5000;
 
@@ -19,17 +23,37 @@ export default async function handleRequest(
   // This is ignored so we can keep it in the template for visibility.  Feel
   // free to delete this parameter in your app if you're not using it!
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  loadContext: AppLoadContext,
+  loadContext: AppLoadContext
 ) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), ABORT_DELAY);
 
+  let callbackName = isbot(request.headers.get("user-agent"))
+    ? "onAllReady"
+    : "onShellReady";
+
+  let instance = createInstance();
+  let lng = await i18next.getLocale(request);
+  let ns = i18next.getRouteNamespaces(remixContext);
+
+  await instance
+    .use(initReactI18next) // Tell our instance to use react-i18next
+    // .use(Backend) // Setup our backend
+    .init({
+      ...i18n, // spread the configuration
+      lng, // The locale we detected above
+      ns, // The namespaces the routes about to render wants to use
+      // backend: { loadPath: resolve("./public/locales/{{lng}}/{{ns}}.json") },
+    });
+
   const body = await renderToReadableStream(
-    <RemixServer
-      context={remixContext}
-      url={request.url}
-      abortDelay={ABORT_DELAY}
-    />,
+    <I18nextProvider i18n={instance}>
+      <RemixServer
+        context={remixContext}
+        url={request.url}
+        abortDelay={ABORT_DELAY}
+      />
+    </I18nextProvider>,
     {
       signal: controller.signal,
       onError(error: unknown) {
@@ -39,7 +63,7 @@ export default async function handleRequest(
         }
         responseStatusCode = 500;
       },
-    },
+    }
   );
 
   body.allReady.then(() => clearTimeout(timeoutId));

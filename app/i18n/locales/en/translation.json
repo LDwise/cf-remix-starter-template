@@ -1,0 +1,11 @@
+{
+    "index": {
+        "title": "Welcome to Remix",
+        "description": "Welcome to Remix!",
+        "whats-next": "What's next?",
+        "quick-start": "Quick Start (5 min)",
+        "tutorial": "Tutorial (30 min)",
+        "remix-docs": "Remix Docs",
+        "remix-docs-description": "Remix Docs"
+    }
+}

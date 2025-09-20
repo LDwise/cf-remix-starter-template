@@ -1,0 +1,11 @@
+{
+    "index": {
+        "title": "欢迎使用 Remix",
+        "description": "欢迎使用 Remix!",
+        "whats-next": "下一步是什么?",
+        "quick-start": "快速入门 (5 分钟)",
+        "tutorial": "教程 (30 分钟)",
+        "remix-docs": "Remix 文档",
+        "remix-docs-description": "Remix 文档"
+    }
+}
