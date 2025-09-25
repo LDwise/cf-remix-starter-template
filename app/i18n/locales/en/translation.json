@@ -1,4 +1,8 @@
 {
+  "components": {
+    "lang-toggle": "Switch Language",
+    "mode-toggle": "Toggle Theme"
+  },
   "index": {
     "title": "Welcome to Remix",
     "description": "Welcome to Remix!",

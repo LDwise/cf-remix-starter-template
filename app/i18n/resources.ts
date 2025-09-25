@@ -9,5 +9,5 @@ export const resources: Resource = {
   sc: { translation: sc },
 };
 
-export const supportedLngs = ['en', 'tc', 'sc'];
+export const supportedLngs = Object.keys(resources);
 export const fallbackLng = supportedLngs[0];

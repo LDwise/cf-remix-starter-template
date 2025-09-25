@@ -1,7 +1,7 @@
 import { type LoaderFunctionArgs, redirect } from '@remix-run/cloudflare';
 import { createThemeAction } from 'remix-themes';
 
-import { themeSessionResolver } from '~/sessions.server';
+import { themeSessionResolver } from '~/lib/sessions.server';
 
 export const action = createThemeAction(themeSessionResolver);
 

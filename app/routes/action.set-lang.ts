@@ -1,5 +1,5 @@
 import { data, ActionFunctionArgs, LoaderFunctionArgs, redirect } from '@remix-run/cloudflare';
-import { i18nSessionStorage } from '~/sessions.server';
+import { i18nSessionStorage } from '~/lib/sessions.server';
 import { supportedLngs } from '~/i18n/resources';
 
 export async function loader({ request }: LoaderFunctionArgs) {

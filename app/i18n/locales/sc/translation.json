@@ -1,4 +1,8 @@
 {
+  "components": {
+    "lang-toggle": "切换语言",
+    "mode-toggle": "切换主题"
+  },
   "index": {
     "title": "欢迎使用 Remix",
     "description": "欢迎使用 Remix!",
