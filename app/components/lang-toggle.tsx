@@ -3,6 +3,7 @@ import { Button } from '~/components/ui/button';
 import { supportedLngs } from '~/i18n/resources';
 import { useTranslation } from 'react-i18next';
 import { useFetcher } from '@remix-run/react';
+import { cn } from '~/lib/utils';
 
 export function LangToggle() {
   const { t, i18n } = useTranslation();
@@ -13,8 +14,8 @@ export function LangToggle() {
     <fetcher.Form method="post" action="/action/set-lang">
       <input type="hidden" name="lng" value={nextLanguage} />
       <Button variant="ghost" size="icon" type="submit">
-        <Languages className="h-[1.2rem] w-[1.2rem]" />
-        <span className="sr-only">{t('components.lang-toggle')}</span>
+        <Languages className={cn('h-[1.2rem] w-[1.2rem]')} />
+        <span className={cn('sr-only')}>{t('components.lang-toggle')}</span>
       </Button>
     </fetcher.Form>
   );

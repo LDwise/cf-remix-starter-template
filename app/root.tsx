@@ -13,9 +13,17 @@ import './tailwind.css';
 import { useChangeLanguage } from 'remix-i18next/react';
 import { useTranslation } from 'react-i18next';
 import i18next from '~/i18n/i18next.server';
-import { themeSessionResolver, i18nSessionStorage } from '~/lib/sessions.server';
+import {
+  themeSessionResolver,
+  i18nSessionStorage,
+} from '~/lib/sessions.server';
 import clsx from 'clsx';
-import { PreventFlashOnWrongTheme, Theme, ThemeProvider, useTheme } from 'remix-themes';
+import {
+  PreventFlashOnWrongTheme,
+  Theme,
+  ThemeProvider,
+  useTheme,
+} from 'remix-themes';
 import { supportedLngs } from '~/i18n/resources';
 
 // export const links: LinksFunction = () => [

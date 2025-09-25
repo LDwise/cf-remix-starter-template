@@ -1,4 +1,9 @@
-import { data, ActionFunctionArgs, LoaderFunctionArgs, redirect } from '@remix-run/cloudflare';
+import {
+  data,
+  ActionFunctionArgs,
+  LoaderFunctionArgs,
+  redirect,
+} from '@remix-run/cloudflare';
 import { i18nSessionStorage } from '~/lib/sessions.server';
 import { supportedLngs } from '~/i18n/resources';
 
@@ -16,7 +21,9 @@ export async function action({ request }: ActionFunctionArgs) {
     return data({ success: false, error: 'Invalid language' });
   }
 
-  const session = await i18nSessionStorage.getSession(request.headers.get('Cookie'));
+  const session = await i18nSessionStorage.getSession(
+    request.headers.get('Cookie'),
+  );
 
   // Early return if language hasn't changed
   const currentLng = session.get('lng');

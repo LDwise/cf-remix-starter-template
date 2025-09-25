@@ -28,7 +28,9 @@ export default async function handleRequest(
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), ABORT_DELAY);
 
-  let callbackName = isbot(request.headers.get('user-agent')) ? 'onAllReady' : 'onShellReady';
+  let callbackName = isbot(request.headers.get('user-agent'))
+    ? 'onAllReady'
+    : 'onShellReady';
 
   let instance = createInstance();
   let lng = await i18next.getLocale(request);
@@ -46,7 +48,11 @@ export default async function handleRequest(
 
   const body = await renderToReadableStream(
     <I18nextProvider i18n={instance}>
-      <RemixServer context={remixContext} url={request.url} abortDelay={ABORT_DELAY} />
+      <RemixServer
+        context={remixContext}
+        url={request.url}
+        abortDelay={ABORT_DELAY}
+      />
     </I18nextProvider>,
     {
       signal: controller.signal,

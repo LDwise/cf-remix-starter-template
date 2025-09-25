@@ -68,7 +68,8 @@
     "preview": "npm run build && wrangler dev",
     "start": "wrangler dev",
     "typecheck": "tsc",
-    "typegen": "wrangler types"
+    "typegen": "wrangler types",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,mdx,json,css,md}\""
   },
   "sideEffects": false,
   "type": "module"

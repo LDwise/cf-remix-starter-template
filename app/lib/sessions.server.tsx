@@ -12,11 +12,14 @@ export const themeSessionStorage = createCookieSessionStorage({
     sameSite: 'lax',
     secrets: ['s3cr3t'],
     // Set domain and secure only if in production
-    ...(isProduction ? { domain: 'your-production-domain.com', secure: true } : {}),
+    ...(isProduction
+      ? { domain: 'your-production-domain.com', secure: true }
+      : {}),
   },
 });
 
-export const themeSessionResolver = createThemeSessionResolver(themeSessionStorage);
+export const themeSessionResolver =
+  createThemeSessionResolver(themeSessionStorage);
 
 export const i18nSessionStorage = createCookieSessionStorage({
   cookie: {
