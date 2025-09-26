@@ -5,7 +5,7 @@ import {
   redirect,
 } from '@remix-run/cloudflare';
 import { i18nSessionStorage } from '~/lib/sessions.server';
-import { supportedLngs } from '~/i18n/resources';
+import { supportedLngs } from '~/i18n/i18n';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   // Redirect GET requests to the home page (avoid open redirect vulnerability)

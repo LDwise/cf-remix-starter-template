@@ -1,6 +1,6 @@
 import { Languages } from 'lucide-react';
 import { Button } from '~/components/ui/button';
-import { supportedLngs } from '~/i18n/resources';
+import { supportedLngs } from '~/i18n/i18n';
 import { useTranslation } from 'react-i18next';
 import { useFetcher } from '@remix-run/react';
 import { cn } from '~/lib/utils';

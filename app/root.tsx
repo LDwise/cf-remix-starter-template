@@ -24,7 +24,7 @@ import {
   ThemeProvider,
   useTheme,
 } from 'remix-themes';
-import { supportedLngs } from '~/i18n/resources';
+import { supportedLngs } from '~/i18n/i18n';
 
 // export const links: LinksFunction = () => [
 //   { rel: "preconnect", href: "https://fonts.googleapis.com" },
