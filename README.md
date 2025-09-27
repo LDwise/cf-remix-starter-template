@@ -1,4 +1,4 @@
-# Welcome to Remix + Cloudflare Workers + remix-i18next + ShadCN UI !
+# Welcome to Remix + Cloudflare Workers!
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ldwise/cf-remix-starter-template/)
 
@@ -16,6 +16,7 @@ Build a fullstack Remix application, deployed to Cloudflare Workers.
 - Frontend: [Remix](https://v2.remix.run/docs/guides/templates#official-templates) + [TailwindCSS v3](https://v3.tailwindcss.com/docs/guides/remix)
 - UI Components: [ShadCN UI](https://ui.shadcn.com/)
 - Internationalization: [remix-i18next](https://v2.remix.run/resources/remix-i18next)
+- Authentication: [Better Auth](https://www.better-auth.com/docs/installation)
 - Formatter: [Prettier](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
 - Deployment: [Cloudflare Workers](https://workers.cloudflare.com/)
 

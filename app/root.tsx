@@ -17,7 +17,7 @@ import {
   themeSessionResolver,
   i18nSessionStorage,
 } from '~/lib/sessions.server';
-import clsx from 'clsx';
+import { cn } from '~/lib/utils';
 import {
   PreventFlashOnWrongTheme,
   Theme,
@@ -92,7 +92,7 @@ function InnerLayout({
 }) {
   const [theme] = useTheme();
   return (
-    <html lang={locale} dir={dir} className={clsx(theme)}>
+    <html lang={locale} dir={dir} className={cn(theme)}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
