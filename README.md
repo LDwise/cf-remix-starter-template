@@ -1,4 +1,6 @@
-# Welcome to Remix + Cloudflare Workers!
+> WIP: This repo Work in progress
+
+# Better Auth + i18n + Cloudflare Workers
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ldwise/cf-remix-starter-template/)
 
@@ -13,10 +15,11 @@ Build a fullstack Remix application, deployed to Cloudflare Workers.
 
 ## Tech Stack
 
-- Frontend: [Remix](https://v2.remix.run/docs/guides/templates#official-templates) + [TailwindCSS v3](https://v3.tailwindcss.com/docs/guides/remix)
-- UI Components: [ShadCN UI](https://ui.shadcn.com/)
-- Internationalization: [remix-i18next](https://v2.remix.run/resources/remix-i18next)
+- Full Stack: [Remix](https://v2.remix.run/docs/guides/templates#official-templates)
+- UI Components: [shadcn](https://ui.shadcn.com/) + [TailwindCSS v3](https://v3.tailwindcss.com/docs/guides/remix) (v3 for browser compatibility)
+- Internationalization: [remix-i18next](https://github.com/sergiodxa/remix-i18next/tree/v6.4.1) (Use `resources` to the `i18next` configuration without a backend in a [serverless runtime](https://developers.cloudflare.com/workers/runtime-apis/) on Cloudflare Workers)
 - Authentication: [Better Auth](https://www.better-auth.com/docs/installation)
+- Database: [Cloudflare D1](https://developers.cloudflare.com/d1/) + [Drizzle ORM](https://orm.drizzle.team/docs/get-started/d1-new)
 - Formatter: [Prettier](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
 - Deployment: [Cloudflare Workers](https://workers.cloudflare.com/)
 
